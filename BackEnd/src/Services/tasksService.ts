@@ -1,5 +1,6 @@
-import { ITasksInfo } from "../interfaces/tasksInter";
-import TasksModel from "../Models/tasksModel";
+import { ITasksInfo } from '../interfaces/tasksInter';
+import TasksModel from '../Models/tasksModel';
+import status from 'http-status-codes';
 
 class TasksService {
   private tasksModel: TasksModel;
@@ -15,7 +16,13 @@ class TasksService {
 
   public createTasks = async (tasksInfos: ITasksInfo) => {
     const isInserted = await this.tasksModel.createTask(tasksInfos);
+    if (!isInserted) return status.INTERNAL_SERVER_ERROR;
     return isInserted;
+  }
+
+  public deleteTask = async (id: number) => {
+    const isDeleted = await this.tasksModel.deleteTask(id);
+    return isDeleted;
   }
 };
 

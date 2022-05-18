@@ -80,6 +80,26 @@ var TasksController = /** @class */ (function () {
                 }
             });
         }); };
+        this.deleteTask = function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
+            var id, taskDeleted, err_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        id = req.body.id;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.tasksService.deleteTask(+id)];
+                    case 2:
+                        taskDeleted = _a.sent();
+                        return [2 /*return*/, res.status(http_status_codes_1["default"].OK).json({ message: 'Task deleted successfully' })];
+                    case 3:
+                        err_3 = _a.sent();
+                        return [2 /*return*/, next(err_3)];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        }); };
         this.tasksService = tasksService;
     }
     return TasksController;

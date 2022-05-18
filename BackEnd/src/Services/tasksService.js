@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+var http_status_codes_1 = require("http-status-codes");
 var TasksService = /** @class */ (function () {
     function TasksService(tasksModel) {
         var _this = this;
@@ -57,7 +58,20 @@ var TasksService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.tasksModel.createTask(tasksInfos)];
                     case 1:
                         isInserted = _a.sent();
+                        if (!isInserted)
+                            return [2 /*return*/, http_status_codes_1["default"].INTERNAL_SERVER_ERROR];
                         return [2 /*return*/, isInserted];
+                }
+            });
+        }); };
+        this.deleteTask = function (id) { return __awaiter(_this, void 0, void 0, function () {
+            var isDeleted;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.tasksModel.deleteTask(id)];
+                    case 1:
+                        isDeleted = _a.sent();
+                        return [2 /*return*/, isDeleted];
                 }
             });
         }); };

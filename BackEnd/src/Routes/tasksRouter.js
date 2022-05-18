@@ -14,4 +14,6 @@ var tasksController = new tasksController_1["default"](tasksService);
 taskRouter.get('/:id', tasksController.tasksFromUser);
 // POST Requests
 taskRouter.post('/', tasksController.createTask);
+// DELETE Requests
+taskRouter["delete"]('/', tasksController.deleteTask);
 exports["default"] = taskRouter;
