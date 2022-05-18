@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import TasksService from "../Services/tasksService";
+import { NextFunction, Request, Response } from 'express';
+import TasksService from '../Services/tasksService';
 
 class TasksController {
   private tasksService: TasksService;

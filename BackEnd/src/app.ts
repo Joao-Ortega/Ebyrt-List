@@ -1,4 +1,5 @@
 import * as express from 'express';
+import errorMiddleware from './ErrMiddleware/errorMiddleware';
 import taskRouter from './Routes/tasksRouter';
 
 class App {
@@ -16,7 +17,7 @@ class App {
       res.header('Access-Control-Allow-Headers', '*');
       next();
     };
-    this.app.use(accessControl, express.json());
+    this.app.use(accessControl, express.json(), errorMiddleware);
     this.app.use('/tasks', taskRouter);
   }
 

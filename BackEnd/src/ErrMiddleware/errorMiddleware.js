@@ -36,25 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var tasksQueries_1 = require("../Queries/tasksQueries");
-var TasksModel = /** @class */ (function () {
-    function TasksModel(connection) {
-        var _this = this;
-        this.allTasksFromUser = function (id) { return __awaiter(_this, void 0, void 0, function () {
-            var usersTask;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this._connection.execute(tasksQueries_1.USER_TASKS_QUERY, [id])];
-                    case 1:
-                        usersTask = (_a.sent())[0];
-                        console.log(usersTask);
-                        return [2 /*return*/, usersTask];
-                }
-            });
-        }); };
-        this._connection = connection;
-    }
-    return TasksModel;
-}());
-;
-exports["default"] = TasksModel;
+var http_status_codes_1 = require("http-status-codes");
+var errorMiddleware = function (err, req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, res.status(http_status_codes_1["default"].INTERNAL_SERVER_ERROR).json({ message: err })];
+    });
+}); };
+exports["default"] = errorMiddleware;

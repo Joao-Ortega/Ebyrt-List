@@ -2,6 +2,7 @@
 exports.__esModule = true;
 exports.App = void 0;
 var express = require("express");
+var errorMiddleware_1 = require("./ErrMiddleware/errorMiddleware");
 var tasksRouter_1 = require("./Routes/tasksRouter");
 var App = /** @class */ (function () {
     function App() {
@@ -15,7 +16,7 @@ var App = /** @class */ (function () {
             res.header('Access-Control-Allow-Headers', '*');
             next();
         };
-        this.app.use(accessControl, express.json());
+        this.app.use(accessControl, express.json(), errorMiddleware_1["default"]);
         this.app.use('/tasks', tasksRouter_1["default"]);
     };
     App.prototype.start = function (PORT) {

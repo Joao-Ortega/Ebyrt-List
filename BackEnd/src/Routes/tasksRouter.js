@@ -7,6 +7,7 @@ var tasksModel_1 = require("../Models/tasksModel");
 var tasksService_1 = require("../Services/tasksService");
 var taskRouter = (0, express_1.Router)();
 var tasksModel = new tasksModel_1["default"](connection_1["default"]);
+console.log(process.env.DB_USER);
 var tasksService = new tasksService_1["default"](tasksModel);
 var tasksController = new tasksController_1["default"](tasksService);
 taskRouter.get('/:id', tasksController.tasksFromUser);
