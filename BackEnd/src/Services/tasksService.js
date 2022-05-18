@@ -75,6 +75,17 @@ var TasksService = /** @class */ (function () {
                 }
             });
         }); };
+        this.updateStatus = function (id, status) { return __awaiter(_this, void 0, void 0, function () {
+            var isUpdated;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.tasksModel.updateStatus(id, status)];
+                    case 1:
+                        isUpdated = _a.sent();
+                        return [2 /*return*/, isUpdated];
+                }
+            });
+        }); };
         this.tasksModel = tasksModel;
     }
     return TasksService;

@@ -24,6 +24,11 @@ class TasksService {
     const isDeleted = await this.tasksModel.deleteTask(id);
     return isDeleted;
   }
+
+  public updateStatus = async (id: number, status: string) => {
+    const isUpdated = await this.tasksModel.updateStatus(id, status);
+    return isUpdated;
+  }
 };
 
 export default TasksService;

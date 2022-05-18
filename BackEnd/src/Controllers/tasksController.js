@@ -100,6 +100,26 @@ var TasksController = /** @class */ (function () {
                 }
             });
         }); };
+        this.updateStatus = function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
+            var _a, id, status, err_4;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = req.body, id = _a.id, status = _a.status;
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.tasksService.updateStatus(id, status)];
+                    case 2:
+                        _b.sent();
+                        return [2 /*return*/, res.status(http_status_codes_1["default"].OK).json({ message: 'Task updated successfully' })];
+                    case 3:
+                        err_4 = _b.sent();
+                        return [2 /*return*/, next(err_4)];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        }); };
         this.tasksService = tasksService;
     }
     return TasksController;

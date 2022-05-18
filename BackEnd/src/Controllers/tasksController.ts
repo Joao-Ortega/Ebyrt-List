@@ -39,6 +39,16 @@ class TasksController {
       return next(err);
     }
   }
+
+  public updateStatus = async (req: Request, res: Response, next: NextFunction) => {
+    const { id, status } = req.body;
+    try {
+      await this.tasksService.updateStatus(id, status);
+      return res.status(Code.OK).json({ message: 'Task updated successfully' });
+    } catch(err) {
+      return next(err);
+    }
+  }
 };
 
 export default TasksController;

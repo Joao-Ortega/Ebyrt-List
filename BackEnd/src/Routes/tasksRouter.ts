@@ -14,6 +14,8 @@ const tasksController = new TasksController(tasksService);
 taskRouter.get('/:id', tasksController.tasksFromUser);
 // POST Requests
 taskRouter.post('/', tasksController.createTask);
+// PUT Requests
+taskRouter.put('/', tasksController.updateStatus);
 // DELETE Requests
 taskRouter.delete('/', tasksController.deleteTask);
 
