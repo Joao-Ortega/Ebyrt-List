@@ -10,7 +10,9 @@ console.log(process.env.DB_USER);
 
 const tasksService = new TasksService(tasksModel);
 const tasksController = new TasksController(tasksService);
-
+// GET Requests
 taskRouter.get('/:id', tasksController.tasksFromUser);
+// POST Requests
+taskRouter.post('/', tasksController.createTask);
 
 export default taskRouter;

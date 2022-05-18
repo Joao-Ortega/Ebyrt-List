@@ -10,5 +10,8 @@ var tasksModel = new tasksModel_1["default"](connection_1["default"]);
 console.log(process.env.DB_USER);
 var tasksService = new tasksService_1["default"](tasksModel);
 var tasksController = new tasksController_1["default"](tasksService);
+// GET Requests
 taskRouter.get('/:id', tasksController.tasksFromUser);
+// POST Requests
+taskRouter.post('/', tasksController.createTask);
 exports["default"] = taskRouter;

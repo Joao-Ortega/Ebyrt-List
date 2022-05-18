@@ -52,6 +52,20 @@ var TasksModel = /** @class */ (function () {
                 }
             });
         }); };
+        this.createTask = function (_a) {
+            var userId = _a.userId, task = _a.task, status = _a.status;
+            return __awaiter(_this, void 0, void 0, function () {
+                var taskInserted;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0: return [4 /*yield*/, this._connection.execute(tasksQueries_1.INSERT_TASKS_QUERY, [userId, task, status])];
+                        case 1:
+                            taskInserted = (_b.sent())[0];
+                            return [2 /*return*/, taskInserted];
+                    }
+                });
+            });
+        };
         this._connection = connection;
     }
     return TasksModel;

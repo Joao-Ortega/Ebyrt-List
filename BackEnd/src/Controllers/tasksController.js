@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+var http_status_codes_1 = require("http-status-codes");
 var TasksController = /** @class */ (function () {
     function TasksController(tasksService) {
         var _this = this;
@@ -51,10 +52,30 @@ var TasksController = /** @class */ (function () {
                         return [4 /*yield*/, this.tasksService.tasksFromUser(+id)];
                     case 2:
                         returnedTasks = _a.sent();
-                        return [2 /*return*/, res.status(200).json(returnedTasks)];
+                        return [2 /*return*/, res.status(http_status_codes_1["default"].OK).json(returnedTasks)];
                     case 3:
                         err_1 = _a.sent();
                         return [2 /*return*/, next(err_1)];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        }); };
+        this.createTask = function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
+            var _a, userId, task, status, taskCreated, err_2;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = req.body, userId = _a.userId, task = _a.task, status = _a.status;
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.tasksService.createTasks({ userId: userId, task: task, status: status })];
+                    case 2:
+                        taskCreated = _b.sent();
+                        return [2 /*return*/, res.status(http_status_codes_1["default"].CREATED).json(taskCreated)];
+                    case 3:
+                        err_2 = _b.sent();
+                        return [2 /*return*/, next(err_2)];
                     case 4: return [2 /*return*/];
                 }
             });
