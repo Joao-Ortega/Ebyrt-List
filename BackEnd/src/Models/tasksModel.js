@@ -46,7 +46,7 @@ var TasksModel = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.connection.execute(tasksQueries_1.USER_TASKS_QUERY, [id])];
                     case 1:
-                        usersTask = _a.sent();
+                        usersTask = (_a.sent())[0];
                         return [2 /*return*/, usersTask];
                 }
             });
