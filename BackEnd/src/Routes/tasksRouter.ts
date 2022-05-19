@@ -7,7 +7,6 @@ import TasksService from '../Services/tasksService';
 const taskRouter = Router();
 const tasksModel = new TasksModel(connection);
 console.log(process.env.DB_USER);
-
 const tasksService = new TasksService(tasksModel);
 const tasksController = new TasksController(tasksService);
 // GET Requests
