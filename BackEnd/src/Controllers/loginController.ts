@@ -19,7 +19,7 @@ class LoginController {
         return res.status(userFromDb).json({ message: 'User not found' });
       }
       if (userFromDb === 400) {
-        return res.status(userFromDb).json({ message: 'Wrong Passsword' });
+        return res.status(userFromDb).json({ message: 'Wrong Password' });
       }
       const { id, username } = userFromDb as IUserFromDb;
       return res.status(Code.OK).json({ id, username, email });

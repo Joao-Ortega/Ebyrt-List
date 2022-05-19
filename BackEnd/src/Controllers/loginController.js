@@ -56,7 +56,7 @@ var LoginController = /** @class */ (function () {
                             return [2 /*return*/, res.status(userFromDb).json({ message: 'User not found' })];
                         }
                         if (userFromDb === 400) {
-                            return [2 /*return*/, res.status(userFromDb).json({ message: 'Wrong Passsword' })];
+                            return [2 /*return*/, res.status(userFromDb).json({ message: 'Wrong Password' })];
                         }
                         _b = userFromDb, id = _b.id, username = _b.username;
                         return [2 /*return*/, res.status(http_status_codes_1["default"].OK).json({ id: id, username: username, email: email })];
