@@ -67,6 +67,28 @@ var LoginController = /** @class */ (function () {
                 }
             });
         }); };
+        this.registerUser = function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
+            var _a, username, email, password, userCreated, err_2;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = req.body, username = _a.username, email = _a.email, password = _a.password;
+                        _b.label = 1;
+                    case 1:
+                        _b.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this._loginService.registerUser({ username: username, email: email, password: password })];
+                    case 2:
+                        userCreated = _b.sent();
+                        typeof userCreated === 'number' ? res.status(http_status_codes_1["default"].CONFLICT).json({ message: 'Email or Username already in use!' })
+                            : res.status(http_status_codes_1["default"].CREATED).json(userCreated);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        err_2 = _b.sent();
+                        return [2 /*return*/, next(err_2)];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        }); };
         this._loginService = loginService;
     }
     return LoginController;

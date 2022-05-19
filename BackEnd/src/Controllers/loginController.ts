@@ -27,6 +27,21 @@ class LoginController {
       return next(err);
     }
   }
+
+  public registerUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+    ):Promise<Response | void> => {
+      const { username, email, password } = req.body;
+      try {
+        const userCreated = await this._loginService.registerUser({ username, email, password });        
+        typeof userCreated === 'number' ? res.status(Code.CONFLICT).json({ message: 'Email or Username already in use!' })
+          : res.status(Code.CREATED).json(userCreated);
+      } catch(err) {
+        return next(err);
+      }
+  }
 };
 
 export default LoginController;

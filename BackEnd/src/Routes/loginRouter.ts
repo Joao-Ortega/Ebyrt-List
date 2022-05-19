@@ -11,12 +11,19 @@ const loginRouter = Router();
 const loginModel = new LoginModel(connection);
 const loginService = new LoginService(loginModel);
 const loginController = new LoginController(loginService);
-
+// POST Requests
 loginRouter.post(
   '/',
   emailValid,
   passValid,
   loginController.checkLogin
+);
+
+loginRouter.post(
+  '/register',
+  emailValid,
+  passValid,
+  loginController.registerUser
 );
 
 export default loginRouter;

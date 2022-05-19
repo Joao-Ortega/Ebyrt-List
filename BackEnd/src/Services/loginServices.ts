@@ -32,10 +32,11 @@ class LoginService {
     return this._bcryptTester.hashSync(pass, salt);
   }
 
-  public registerUser = async ({ username, email, password }: IInfosToCreate):Promise<object> => {
+  public registerUser = async ({ username, email, password }: IInfosToCreate):Promise<object | number> => {
     const treatedPass = this.hashPass(password);
     const objToRegister = { username, email, password: treatedPass };
     const isCreated = await this._loginModel.registerUser(objToRegister);
+    if (typeof isCreated === 'number') return Code.CONFLICT;
     return isCreated;
   }
 };

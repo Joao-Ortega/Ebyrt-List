@@ -3,7 +3,7 @@ import * as Joi from 'joi';
 import Code from 'http-status-codes';
 
 export const passValid = (req: Request, res: Response, next: NextFunction) => {
-  const passwordTest = Joi.string().min(6).max(15).required();
+  const passwordTest = Joi.string().min(6).required();
   const { password } = req.body;
   
   if (password === undefined) {

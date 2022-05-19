@@ -61,6 +61,29 @@ var LoginService = /** @class */ (function () {
                 }
             });
         }); };
+        this.hashPass = function (pass) {
+            var salt = _this._bcryptTester.genSaltSync(10);
+            return _this._bcryptTester.hashSync(pass, salt);
+        };
+        this.registerUser = function (_a) {
+            var username = _a.username, email = _a.email, password = _a.password;
+            return __awaiter(_this, void 0, void 0, function () {
+                var treatedPass, objToRegister, isCreated;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            treatedPass = this.hashPass(password);
+                            objToRegister = { username: username, email: email, password: treatedPass };
+                            return [4 /*yield*/, this._loginModel.registerUser(objToRegister)];
+                        case 1:
+                            isCreated = _b.sent();
+                            if (typeof isCreated === 'number')
+                                return [2 /*return*/, http_status_codes_1["default"].CONFLICT];
+                            return [2 /*return*/, isCreated];
+                    }
+                });
+            });
+        };
         this._loginModel = loginModel;
         this._bcryptTester = bcrypt;
     }

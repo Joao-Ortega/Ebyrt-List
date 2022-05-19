@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var loginQueries_1 = require("../Queries/loginQueries");
+var http_status_codes_1 = require("http-status-codes");
 var LoginModel = /** @class */ (function () {
     function LoginModel(connection) {
         var _this = this;
@@ -51,6 +52,43 @@ var LoginModel = /** @class */ (function () {
                 }
             });
         }); };
+        this.checkUser = function (username, email) { return __awaiter(_this, void 0, void 0, function () {
+            var checkEmail, checkUsername;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this._connection.execute(loginQueries_1.VERIFY_EMAIL_QUERY, [email])];
+                    case 1:
+                        checkEmail = (_a.sent())[0];
+                        if (checkEmail.length)
+                            return [2 /*return*/, true];
+                        return [4 /*yield*/, this._connection.execute(loginQueries_1.VERIFY_USERNAME_QUERY, [username])];
+                    case 2:
+                        checkUsername = (_a.sent())[0];
+                        if (checkUsername.length)
+                            return [2 /*return*/, true];
+                        return [2 /*return*/, false];
+                }
+            });
+        }); };
+        this.registerUser = function (_a) {
+            var username = _a.username, email = _a.email, password = _a.password;
+            return __awaiter(_this, void 0, void 0, function () {
+                var alreadyExist, isCreated;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0: return [4 /*yield*/, this.checkUser(username, email)];
+                        case 1:
+                            alreadyExist = _b.sent();
+                            if (alreadyExist)
+                                return [2 /*return*/, http_status_codes_1["default"].CONFLICT];
+                            return [4 /*yield*/, this._connection.execute(loginQueries_1.CREATE_USER_QUERY, [username, email, password])];
+                        case 2:
+                            isCreated = _b.sent();
+                            return [2 /*return*/, isCreated];
+                    }
+                });
+            });
+        };
         this._connection = connection;
     }
     return LoginModel;
