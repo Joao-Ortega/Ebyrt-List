@@ -1,0 +1,22 @@
+.span-nav {
+  color: aliceblue;
+}
+
+nav {
+  height: 60px;
+}
+
+.container-profile {
+  display: flex;
+  justify-content: space-between;
+}
+
+img {
+  color: aliceblue;
+  height: 25px;
+  width: 25px;
+}
+
+.log-out:hover {
+  color: red;
+}
